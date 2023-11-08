@@ -20,8 +20,9 @@ Route::get('/', function () {
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\SessionsController;
-            
+
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -33,7 +34,7 @@ Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
 Route::get('verify', function () {
 	return view('sessions.password.verify');
-})->middleware('guest')->name('verify'); 
+})->middleware('guest')->name('verify');
 Route::get('/reset-password/{token}', function ($token) {
 	return view('sessions.password.reset', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
@@ -69,4 +70,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('user-profile', function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');
+
+
+    //Reparaciones
+    Route::get('/NuevaReparacion',[ReparacionController::class, 'vistaNuevaReparacion'])->middleware('auth')->name('nuevaReparacionVista');
+    Route::post('/GuardarReparacion',[ReparacionController::class , 'guardarReparacion'])->middleware('auth')->name('guardar');
+
 });
+

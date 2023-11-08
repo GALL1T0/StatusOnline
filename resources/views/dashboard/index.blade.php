@@ -5,17 +5,26 @@
         <x-navbars.navs.auth titlePage="Dashboard"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
-            <div class="row">
+            <div class="row mt-2">
+                <div class="container d-flex justify-content-end">
+                    <a href="{{ route('nuevaReparacionVista') }}" class="btn btn-primary btn-lg">
+                        <span class="btn-inner--icon"><i class="material-icons">play_arrow</i></span>
+                        <span class="btn-inner--text">Nueva Reparacion</span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row mt-4">
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
+                                <i class="material-icons opacity-10">check_circle</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Today's Money</p>
-                                <h4 class="mb-0">$53k</h4>
+                                <p class="text-sm mb-0 text-capitalize">Reparaciones Realizadas</p>
+                                <h4 class="mb-0">2</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -30,10 +39,10 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">person</i>
+                                <i class="material-icons opacity-10">build_circle</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Today's Users</p>
+                                <p class="text-sm mb-0 text-capitalize">Reparaciones Pendientes</p>
                                 <h4 class="mb-0">2,300</h4>
                             </div>
                         </div>
@@ -52,7 +61,7 @@
                                 <i class="material-icons opacity-10">person</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">New Clients</p>
+                                <p class="text-sm mb-0 text-capitalize">Nuevos Clientes</p>
                                 <h4 class="mb-0">3,462</h4>
                             </div>
                         </div>
@@ -68,10 +77,10 @@
                         <div class="card-header p-3 pt-2">
                             <div
                                 class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
+                                <i class="material-icons opacity-10">monetization_on</i>
                             </div>
                             <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Sales</p>
+                                <p class="text-sm mb-0 text-capitalize">Ventas</p>
                                 <h4 class="mb-0">$103,430</h4>
                             </div>
                         </div>
@@ -166,11 +175,13 @@
                                         </a>
                                         <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5"
                                             aria-labelledby="dropdownTable">
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a>
+                                            <li><a class="dropdown-item border-radius-md"
+                                                    href="javascript:;">Action</a>
                                             </li>
                                             <li><a class="dropdown-item border-radius-md" href="javascript:;">Another
                                                     action</a></li>
-                                            <li><a class="dropdown-item border-radius-md" href="javascript:;">Something
+                                            <li><a class="dropdown-item border-radius-md"
+                                                    href="javascript:;">Something
                                                     else here</a></li>
                                         </ul>
                                     </div>
@@ -214,22 +225,26 @@
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Ryan Tompson">
-                                                        <img src="{{ asset('assets') }}/img/team-1.jpg" alt="team1">
+                                                        <img src="{{ asset('assets') }}/img/team-1.jpg"
+                                                            alt="team1">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Romina Hadid">
-                                                        <img src="{{ asset('assets') }}/img/team-2.jpg" alt="team2">
+                                                        <img src="{{ asset('assets') }}/img/team-2.jpg"
+                                                            alt="team2">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Alexander Smith">
-                                                        <img src="{{ asset('assets') }}/img/team-3.jpg" alt="team3">
+                                                        <img src="{{ asset('assets') }}/img/team-3.jpg"
+                                                            alt="team3">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Jessica Doe">
-                                                        <img src="{{ asset('assets') }}/img/team-4.jpg" alt="team4">
+                                                        <img src="{{ asset('assets') }}/img/team-4.jpg"
+                                                            alt="team4">
                                                     </a>
                                                 </div>
                                             </td>
@@ -268,12 +283,14 @@
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Romina Hadid">
-                                                        <img src="{{ asset('assets') }}/img/team-2.jpg" alt="team5">
+                                                        <img src="{{ asset('assets') }}/img/team-2.jpg"
+                                                            alt="team5">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Jessica Doe">
-                                                        <img src="{{ asset('assets') }}/img/team-4.jpg" alt="team6">
+                                                        <img src="{{ asset('assets') }}/img/team-4.jpg"
+                                                            alt="team6">
                                                     </a>
                                                 </div>
                                             </td>
@@ -312,12 +329,14 @@
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Romina Hadid">
-                                                        <img src="{{ asset('assets') }}/img/team-3.jpg" alt="team8">
+                                                        <img src="{{ asset('assets') }}/img/team-3.jpg"
+                                                            alt="team8">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Jessica Doe">
-                                                        <img src="{{ asset('assets') }}/img/team-1.jpg" alt="team9">
+                                                        <img src="{{ asset('assets') }}/img/team-1.jpg"
+                                                            alt="team9">
                                                     </a>
                                                 </div>
                                             </td>
@@ -356,22 +375,26 @@
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Ryan Tompson">
-                                                        <img src="{{ asset('assets') }}/img/team-4.jpg" alt="user1">
+                                                        <img src="{{ asset('assets') }}/img/team-4.jpg"
+                                                            alt="user1">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Romina Hadid">
-                                                        <img src="{{ asset('assets') }}/img/team-3.jpg" alt="user2">
+                                                        <img src="{{ asset('assets') }}/img/team-3.jpg"
+                                                            alt="user2">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Alexander Smith">
-                                                        <img src="{{ asset('assets') }}/img/team-4.jpg" alt="user3">
+                                                        <img src="{{ asset('assets') }}/img/team-4.jpg"
+                                                            alt="user3">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Jessica Doe">
-                                                        <img src="{{ asset('assets') }}/img/team-1.jpg" alt="user4">
+                                                        <img src="{{ asset('assets') }}/img/team-1.jpg"
+                                                            alt="user4">
                                                     </a>
                                                 </div>
                                             </td>
@@ -410,7 +433,8 @@
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Ryan Tompson">
-                                                        <img src="{{ asset('assets') }}/img/team-4.jpg" alt="user5">
+                                                        <img src="{{ asset('assets') }}/img/team-4.jpg"
+                                                            alt="user5">
                                                     </a>
                                                 </div>
                                             </td>
@@ -449,12 +473,14 @@
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Ryan Tompson">
-                                                        <img src="{{ asset('assets') }}/img/team-1.jpg" alt="user6">
+                                                        <img src="{{ asset('assets') }}/img/team-1.jpg"
+                                                            alt="user6">
                                                     </a>
                                                     <a href="javascript:;" class="avatar avatar-xs rounded-circle"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Jessica Doe">
-                                                        <img src="{{ asset('assets') }}/img/team-4.jpg" alt="user7">
+                                                        <img src="{{ asset('assets') }}/img/team-4.jpg"
+                                                            alt="user7">
                                                     </a>
                                                 </div>
                                             </td>
@@ -567,254 +593,253 @@
     <x-plugins></x-plugins>
     </div>
     @push('js')
-    <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
-    <script>
-        var ctx = document.getElementById("chart-bars").getContext("2d");
+        <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script>
+        <script>
+            var ctx = document.getElementById("chart-bars").getContext("2d");
 
-        new Chart(ctx, {
-            type: "bar",
-            data: {
-                labels: ["M", "T", "W", "T", "F", "S", "S"],
-                datasets: [{
-                    label: "Sales",
-                    tension: 0.4,
-                    borderWidth: 0,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: "rgba(255, 255, 255, .8)",
-                    data: [50, 20, 10, 22, 50, 10, 40],
-                    maxBarThickness: 6
-                }, ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["M", "T", "W", "T", "F", "S", "S"],
+                    datasets: [{
+                        label: "Sales",
+                        tension: 0.4,
+                        borderWidth: 0,
+                        borderRadius: 4,
+                        borderSkipped: false,
+                        backgroundColor: "rgba(255, 255, 255, .8)",
+                        data: [50, 20, 10, 22, 50, 10, 40],
+                        maxBarThickness: 6
+                    }, ],
                 },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            suggestedMin: 0,
-                            suggestedMax: 500,
-                            beginAtZero: true,
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                            color: "#fff"
-                        },
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                },
-            },
-        });
-
-
-        var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-        new Chart(ctx2, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0,
-                    borderWidth: 0,
-                    pointRadius: 5,
-                    pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                    pointBorderColor: "transparent",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderWidth: 4,
-                    backgroundColor: "transparent",
-                    fill: true,
-                    data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-                    maxBarThickness: 6
-
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
-                    },
-                    x: {
-                        grid: {
-                            drawBorder: false,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
                             display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
                         }
                     },
-                },
-            },
-        });
-
-        var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
-        new Chart(ctx3, {
-            type: "line",
-            data: {
-                labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: "Mobile apps",
-                    tension: 0,
-                    borderWidth: 0,
-                    pointRadius: 5,
-                    pointBackgroundColor: "rgba(255, 255, 255, .8)",
-                    pointBorderColor: "transparent",
-                    borderColor: "rgba(255, 255, 255, .8)",
-                    borderWidth: 4,
-                    backgroundColor: "transparent",
-                    fill: true,
-                    data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-                    maxBarThickness: 6
-
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index',
-                },
-                scales: {
-                    y: {
-                        grid: {
-                            drawBorder: false,
-                            display: true,
-                            drawOnChartArea: true,
-                            drawTicks: false,
-                            borderDash: [5, 5],
-                            color: 'rgba(255, 255, 255, .2)'
-                        },
-                        ticks: {
-                            display: true,
-                            padding: 10,
-                            color: '#f8f9fa',
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
-                        }
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
                     },
-                    x: {
-                        grid: {
-                            drawBorder: false,
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: true,
+                                drawOnChartArea: true,
+                                drawTicks: false,
+                                borderDash: [5, 5],
+                                color: 'rgba(255, 255, 255, .2)'
+                            },
+                            ticks: {
+                                suggestedMin: 0,
+                                suggestedMax: 500,
+                                beginAtZero: true,
+                                padding: 10,
+                                font: {
+                                    size: 14,
+                                    weight: 300,
+                                    family: "Roboto",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                                color: "#fff"
+                            },
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: true,
+                                drawOnChartArea: true,
+                                drawTicks: false,
+                                borderDash: [5, 5],
+                                color: 'rgba(255, 255, 255, .2)'
+                            },
+                            ticks: {
+                                display: true,
+                                color: '#f8f9fa',
+                                padding: 10,
+                                font: {
+                                    size: 14,
+                                    weight: 300,
+                                    family: "Roboto",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                    },
+                },
+            });
+
+
+            var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+            new Chart(ctx2, {
+                type: "line",
+                data: {
+                    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Mobile apps",
+                        tension: 0,
+                        borderWidth: 0,
+                        pointRadius: 5,
+                        pointBackgroundColor: "rgba(255, 255, 255, .8)",
+                        pointBorderColor: "transparent",
+                        borderColor: "rgba(255, 255, 255, .8)",
+                        borderColor: "rgba(255, 255, 255, .8)",
+                        borderWidth: 4,
+                        backgroundColor: "transparent",
+                        fill: true,
+                        data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+                        maxBarThickness: 6
+
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
                             display: false,
-                            drawOnChartArea: false,
-                            drawTicks: false,
-                            borderDash: [5, 5]
-                        },
-                        ticks: {
-                            display: true,
-                            color: '#f8f9fa',
-                            padding: 10,
-                            font: {
-                                size: 14,
-                                weight: 300,
-                                family: "Roboto",
-                                style: 'normal',
-                                lineHeight: 2
-                            },
                         }
                     },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: true,
+                                drawOnChartArea: true,
+                                drawTicks: false,
+                                borderDash: [5, 5],
+                                color: 'rgba(255, 255, 255, .2)'
+                            },
+                            ticks: {
+                                display: true,
+                                color: '#f8f9fa',
+                                padding: 10,
+                                font: {
+                                    size: 14,
+                                    weight: 300,
+                                    family: "Roboto",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                display: true,
+                                color: '#f8f9fa',
+                                padding: 10,
+                                font: {
+                                    size: 14,
+                                    weight: 300,
+                                    family: "Roboto",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                    },
                 },
-            },
-        });
+            });
 
-    </script>
+            var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+
+            new Chart(ctx3, {
+                type: "line",
+                data: {
+                    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [{
+                        label: "Mobile apps",
+                        tension: 0,
+                        borderWidth: 0,
+                        pointRadius: 5,
+                        pointBackgroundColor: "rgba(255, 255, 255, .8)",
+                        pointBorderColor: "transparent",
+                        borderColor: "rgba(255, 255, 255, .8)",
+                        borderWidth: 4,
+                        backgroundColor: "transparent",
+                        fill: true,
+                        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                        maxBarThickness: 6
+
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false,
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index',
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                drawBorder: false,
+                                display: true,
+                                drawOnChartArea: true,
+                                drawTicks: false,
+                                borderDash: [5, 5],
+                                color: 'rgba(255, 255, 255, .2)'
+                            },
+                            ticks: {
+                                display: true,
+                                padding: 10,
+                                color: '#f8f9fa',
+                                font: {
+                                    size: 14,
+                                    weight: 300,
+                                    family: "Roboto",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                        x: {
+                            grid: {
+                                drawBorder: false,
+                                display: false,
+                                drawOnChartArea: false,
+                                drawTicks: false,
+                                borderDash: [5, 5]
+                            },
+                            ticks: {
+                                display: true,
+                                color: '#f8f9fa',
+                                padding: 10,
+                                font: {
+                                    size: 14,
+                                    weight: 300,
+                                    family: "Roboto",
+                                    style: 'normal',
+                                    lineHeight: 2
+                                },
+                            }
+                        },
+                    },
+                },
+            });
+        </script>
     @endpush
 </x-layout>

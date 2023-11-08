@@ -122,8 +122,10 @@ if (document.querySelector('.fixed-plugin')) {
 
 //Set Sidebar Color
 function sidebarColor(a) {
-  var parent = document.querySelector(".nav-link.active");
-  var color = a.getAttribute("data-color");
+
+  console.log("Function sidebarColor is called.");
+  let parent = document.querySelector(".nav-link.active");
+  let color = a.getAttribute("data-color");
 
   if (parent.classList.contains('bg-gradient-primary')) {
     parent.classList.remove('bg-gradient-primary');
