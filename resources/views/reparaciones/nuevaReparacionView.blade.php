@@ -4,7 +4,7 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Nueva Reparacion"></x-navbars.navs.auth>
         <!-- End Navbar -->
-        <form action="{{route('guardar')}}" method="POST">
+        <form action="{{route('guardarReparacion')}}" method="POST">
             @csrf
             <div class="container pt-4">
                 <div class="input-group input-group-dynamic mb-1">
@@ -32,9 +32,9 @@
                     <h6>Correo del Cliente</h6>
                 </span>
                 <div class="input-group input-group-dynamic mb-1">
-                    <input type="text" class="form-control" id="correo_cliente" name="correo_cliente"
+                    <input type="email" class="form-control" id="correo_cliente" name="correo_cliente"
                         placeholder="Correo del cliente" aria-label="Correo Cliente" aria-describedby="basic-addon2"
-                        required>
+                        required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" size="30">
                     <span class="input-group-text" id="basic-addon2">@example.com</span>
                 </div>
                 <span for="fh_estimada">
@@ -51,7 +51,7 @@
                 <div class="input-group input-group-dynamic mb-1">
                     <span class="input-group-text">$</span>
                     <input type="number" class="form-control" id="precio" name="precio"
-                        aria-label="Amount (to the nearest dollar)" required>
+                        aria-label="Amount (to the nearest dollar)" min="1" pattern="^[0-9]+" required>
                 </div>
                 <br>
                 <button type="submit" class="btn bg-gradient-dark">Guardar Reparacion</button>

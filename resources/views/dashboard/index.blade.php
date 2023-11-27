@@ -12,46 +12,84 @@
                         <span class="btn-inner--text">Nueva Reparacion</span>
                     </a>
                 </div>
-
             </div>
+            @if (session('success'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: "{{ session('success') }}",
+                        });
+                    });
+                </script>
+            @endif
+            @if ($errors->has('error'))
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: "{{ $errors->first('error') }}",
+                        });
+                    });
+                </script>
+            @endif
+
             <div class="row mt-4">
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">check_circle</i>
+                    <a href="">
+                        <div class="card" style="cursor: pointer">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="material-icons opacity-10">check_circle</i>
+                                </div>
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0 text-capitalize">Reparaciones Realizadas</p>
+                                    <h4 class="mb-0">{{$ReparacionesRealizadas['0']}}</h4>
+                                </div>
                             </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Reparaciones Realizadas</p>
-                                <h4 class="mb-0">2</h4>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                <p class="mb-0">
+                                    @if($ReparacionesRealizadas[1] >0)
+                                    <span class="text-success text-sm font-weight-bolder">+{{number_format($ReparacionesRealizadas[1],2)}}% </span> mas  que la ultima semana
+                                    @elseif ($ReparacionesRealizadas[1] == 0)
+                                    <span class="text-secondary text-sm font-weight-bolder">{{$ReparacionesRealizadas[1]}}% </span>&nbsp; sin crecimiento
+                                    @else
+                                    <span class="text-danger text-sm font-weight-bolder">{{ number_format($ReparacionesRealizadas[1],2)}}% </span> menos que la ultima semana
+                                    @endif
+                                </p>
                             </div>
                         </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than
-                                lask week</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-header p-3 pt-2">
-                            <div
-                                class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">build_circle</i>
+                    <a href="{{route('verReparacionesPendientes')}}">
+                        <div class="card" style="cursor: pointer">
+                            <div class="card-header p-3 pt-2">
+                                <div
+                                    class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                                    <i class="material-icons opacity-10">build_circle</i>
+                                </div>
+                                <div class="text-end pt-1">
+                                    <p class="text-sm mb-0 text-capitalize">Reparaciones Pendientes</p>
+                                    <h4 class="mb-0">{{$ReparacionesPendientes[0]}}</h4>
+                                </div>
                             </div>
-                            <div class="text-end pt-1">
-                                <p class="text-sm mb-0 text-capitalize">Reparaciones Pendientes</p>
-                                <h4 class="mb-0">2,300</h4>
+                            <hr class="dark horizontal my-0">
+                            <div class="card-footer p-3">
+                                <p class="mb-0">
+                                    @if($ReparacionesPendientes[1] >0)
+                                    <span class="text-success text-sm font-weight-bolder">+{{number_format($ReparacionesPendientes[1],2)}}% </span> mas que el último mes
+                                    @elseif ($ReparacionesPendientes[1] == 0)
+                                    <span class="text-secondary text-sm font-weight-bolder">{{$ReparacionesPendientes[1]}}% </span>&nbsp; sin crecimiento
+                                    @else
+                                    <span class="text-danger text-sm font-weight-bolder">{{ number_format($ReparacionesPendientes[1],2)}}% </span> menos que el último mes
+                                    @endif
+                                    </p>
                             </div>
                         </div>
-                        <hr class="dark horizontal my-0">
-                        <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+3% </span>than
-                                lask month</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
@@ -62,13 +100,20 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Nuevos Clientes</p>
-                                <h4 class="mb-0">3,462</h4>
+                                <h4 class="mb-0">{{$NuevosClientes[0]}}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2%</span> than
-                                yesterday</p>
+                            <p class="mb-0">
+                                @if($NuevosClientes[1] >0)
+                                <span class="text-success text-sm font-weight-bolder">+{{number_format($NuevosClientes[1],2)}}% </span>&nbsp; mas que ayer
+                                @elseif ($NuevosClientes[1] == 0)
+                                <span class="text-secondary text-sm font-weight-bolder">{{$NuevosClientes[1]}}% </span> &nbsp; sin crecimiento
+                                @else
+                                <span class="text-danger text-sm font-weight-bolder">{{ number_format($NuevosClientes[1],2)}}% </span>&nbsp; menos que ayer
+                                @endif
+                                </p>
                         </div>
                     </div>
                 </div>
@@ -81,18 +126,26 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Ventas</p>
-                                <h4 class="mb-0">$103,430</h4>
+                                <h4 class="mb-0">${{ number_format($Ventas[0], 2, '.', ',') }}</h4>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
                         <div class="card-footer p-3">
-                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than
-                                yesterday</p>
+                            <p class="mb-0">
+                                @if($Ventas[1] >0)
+                                <span class="text-success text-sm font-weight-bolder">+{{number_format($Ventas[1],2)}}% </span> mas que ayer
+                                @elseif ($Ventas[1] == 0)
+                                <span class="text-secondary text-sm font-weight-bolder">{{$Ventas[1]}}% </span> &nbsp; sin crecimiento
+                                @else
+                                <span class="text-danger text-sm font-weight-bolder">{{ number_format($Ventas[1],2)}}% </span> menos que ayer
+                                @endif
+
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
+            {{-- <div class="row mt-4">
                 <div class="col-lg-4 col-md-6 mt-4 mb-4">
                     <div class="card z-index-2 ">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
@@ -154,8 +207,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mb-4">
+            </div> --}}
+            {{-- <div class="row mb-4">
                 <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
                     <div class="card">
                         <div class="card-header pb-0">
@@ -586,7 +639,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <x-footers.auth></x-footers.auth>
         </div>
     </main>

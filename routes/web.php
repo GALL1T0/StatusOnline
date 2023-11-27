@@ -22,7 +22,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReparacionController;
 use App\Http\Controllers\SessionsController;
-
+use GuzzleHttp\Middleware;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -73,8 +73,15 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //Reparaciones
-    Route::get('/NuevaReparacion',[ReparacionController::class, 'vistaNuevaReparacion'])->middleware('auth')->name('nuevaReparacionVista');
-    Route::post('/GuardarReparacion',[ReparacionController::class , 'guardarReparacion'])->middleware('auth')->name('guardar');
+    Route::get('/nuevaReparacion',[ReparacionController::class, 'vistaNuevaReparacion'])->middleware('auth')->name('nuevaReparacionVista');
+    Route::post('/guardarReparacion', [ReparacionController::class , 'guardarReparacion'])->middleware('auth')->name('guardarReparacion');
+    Route::get('/nuevoProducto', [ReparacionController::class,'vistaNuevoProducto'])->middleware('auth')->name('nuevoProductoVista');
+    Route::post('/guardarProducto', [ReparacionController::class, 'guardarProducto'])->middleware('auth')->name('guardarProducto');
+    Route::get('/reparacionesPendientes',[ReparacionController::class,'reparacionesPendientes'])->middleware('auth')->name('verReparacionesPendientes');
+    Route::post('/updateReparacion',[ReparacionController::class, 'updateReparacionPendiente'])->middleware('auth')->name('updateReparacionesPendientes');
+    Route::get('/modificarReparacion/{id}',[ReparacionController::class, 'modificarReparacion'])->middleware('auth')->name('modificarReparacion');
 
+
+    Route::get('/buscarReparacion',[ReparacionController::class, 'consultaReparacion'])->middleware('auth')->name('consultarReparacion');
 });
 
