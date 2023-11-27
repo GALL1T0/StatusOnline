@@ -8,7 +8,7 @@
 
                     </script>,
                     made with <i class="fa fa-heart"></i> by
-                    <a href="" class="font-weight-bold" target="_blank">Lacteos En La Via</a>
+                    <a href="https://statics.memondo.com/p/s1/ccs/2020/05/CC_2755231_471f920490944b0fbb46d8f250d4893d_meme_otros_estamos_rodeados_de_hipocritas.jpg?cb=1328496" class="font-weight-bold" target="_blank">Lacteos En La Via</a>
                     for a better web.
                 </div>
             </div>
