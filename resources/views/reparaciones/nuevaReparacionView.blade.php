@@ -4,7 +4,7 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Nueva Reparacion"></x-navbars.navs.auth>
         <!-- End Navbar -->
-        <form action="{{route('guardarReparacion')}}" method="POST">
+        <form action="{{route('guardarReparacion')}}" method="POST" id="insert">
             @csrf
             <div class="container pt-4">
                 <div class="input-group input-group-dynamic mb-1">
@@ -54,7 +54,7 @@
                         aria-label="Amount (to the nearest dollar)" min="1" pattern="^[0-9]+" required>
                 </div>
                 <br>
-                <button type="submit" class="btn bg-gradient-dark">Guardar Reparacion</button>
+                <button type="submit" id="guardarBoton" class="btn bg-gradient-dark">Guardar Reparacion</button>
             </div>
         </form>
 
@@ -62,6 +62,17 @@
     <x-plugins></x-plugins>
 </x-layout>
 <script>
+      document.getElementById('guardarBoton').addEventListener('click', function(event) {
+        // Evita que el formulario se envíe automáticamente
+        event.preventDefault();
+        // Deshabilita el botón y cambia el texto
+        this.disabled = true;
+        this.innerHTML = 'Guardando...';
+        // Obtén una referencia al formulario
+        var formulario = document.getElementById('insert'); // Reemplaza 'tuFormularioId' con el ID de tu formulario
+        // Envía el formulario
+        formulario.submit();
+    });
     // In your Javascript (external .js resource or <script> tag)
     $(document).ready(function() {
         $('.productos').select2();

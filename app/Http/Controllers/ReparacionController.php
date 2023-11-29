@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\newReparacion;
+use App\Mail\StatusMail;
 use App\Models\Productos;
 use Illuminate\Http\Request;
 use App\Models\Reparacion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 use function Laravel\Prompts\select;
@@ -48,6 +51,13 @@ class ReparacionController extends Controller
         try {
             // Intenta insertar la reparacion
             Reparacion::insert($reparacion);
+            $Reparacion = DB::select('SELECT * FROM reparacion ORDER BY id DESC LIMIT 1');
+            $uuid = $Reparacion[0]->UUID;
+            $fh_estimada = $Reparacion[0]->fh_estimada;
+            $reparador = $usuario->name;
+
+            $mail = new newReparacion($uuid,$fh_estimada,$reparador);
+            Mail::to($request->correo_cliente)->send($mail);
             return redirect()->route('dashboard')->with('success', 'La reparacion se ha ingresado con éxito');
         } catch (\Throwable $th) {
             // manejo de errores
@@ -62,7 +72,8 @@ class ReparacionController extends Controller
         SELECT reparacion.id as id, producto.nombre_producto as producto,correo_cliente as correo, estatus.tipo as estatus, fh_estimada as fecha_estimada FROM reparacion
         INNER JOIN producto on reparacion.id_producto = producto.id
         INNER JOIN estatus on reparacion.status = estatus.ID
-        WHERE status NOT IN (?)', [7]);
+        WHERE status NOT IN (?)
+        AND activo = ?', [7, 1]);
 
         return view('reparaciones.verReparacionesPendientesView', compact('reparaciones_pendientes'));
     }
@@ -74,7 +85,17 @@ class ReparacionController extends Controller
         $estatus = $request->status;
         $comentario = $request->comentario;
         $fecha = $request->fh_estimada;
-
+        $data = DB::select(
+            'SELECT producto.nombre_producto as nombre, users.name as reparador, reparacion.correo_cliente as correo, estatus.tipo as estatus
+             FROM reparacion
+            INNER JOIN estatus ON reparacion.status = estatus.id
+            INNER JOIN producto ON reparacion.id_producto = producto.id
+            INNER JOIN users ON reparacion.id_usuario = users.id where reparacion.id = ?',  [$id]
+        );
+        $nombre = $data[0]->nombre;
+        $reparador = $data[0]->reparador;
+        $correo = $data[0]->correo;
+        $Estatus = $data[0]->estatus;
         try {
             $reparacion = $reparacionModel->find($id);
 
@@ -94,6 +115,9 @@ class ReparacionController extends Controller
                 'fh_estimada' => $fecha
             ]);
 
+
+            $mail = new StatusMail($nombre, $Estatus, $reparador, $comentario, $fecha);
+            Mail::to($correo)->send($mail);
             return redirect()->route('dashboard')->with('success', 'La reparacion se ha actualizado con éxito');
         } catch (\Throwable $th) {
             $errorMessage = $th->getMessage();
@@ -144,5 +168,40 @@ class ReparacionController extends Controller
 
         $estatus = DB::select('SELECT * FROM estatus');
         return view('reparaciones.modificarReparacionView', compact('reparacionArray', 'estatus'));
+    }
+    public function eliminarReparacion($id)
+    {
+        // Buscar la reparación por su ID
+        $reparacion = Reparacion::find($id);
+
+        // Verificar si se encontró la reparación
+        if ($reparacion) {
+            // Actualizar el campo que deseas modificar
+            $reparacion->activo = 0;
+            $reparacion->status = 5;
+            // Guardar los cambios en la base de datos
+            $reparacion->save();
+            return response()->json([
+                'title' => 'Actualizado exitosamente',
+                'message' => 'La reparación ha sido actualizada correctamente.',
+                'icon' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Error',
+                'message' => 'La reparación no fue encontrada.',
+                'icon' => 'error',
+            ]);
+        }
+    }
+
+    public function consultarReparacionByUUID(Request $request)
+    {
+        $reparacion = DB::select('SELECT reparacion.id as id, producto.nombre_producto as nombre,reparacion.status as id_estatus, estatus.tipo as estatus, reparacion.fh_estimada as fecha_estimada FROM reparacion INNER JOIN producto on reparacion.id_producto = producto.ID INNER JOIN estatus on reparacion.status = estatus.id WHERE UUID = ?', [$request->UUID]);
+        $Reparacion = json_encode($reparacion);
+        // Decodificar la cadena JSON para obtener un array
+        $reparacionArray = json_decode($Reparacion, true);
+
+        return view('reparaciones.mostrarReparacionView', compact('reparacionArray'));
     }
 }

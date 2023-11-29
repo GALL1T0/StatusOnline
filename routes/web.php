@@ -80,8 +80,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/reparacionesPendientes',[ReparacionController::class,'reparacionesPendientes'])->middleware('auth')->name('verReparacionesPendientes');
     Route::post('/updateReparacion',[ReparacionController::class, 'updateReparacionPendiente'])->middleware('auth')->name('updateReparacionesPendientes');
     Route::get('/modificarReparacion/{id}',[ReparacionController::class, 'modificarReparacion'])->middleware('auth')->name('modificarReparacion');
-
-
-    Route::get('/buscarReparacion',[ReparacionController::class, 'consultaReparacion'])->middleware('auth')->name('consultarReparacion');
+    Route::get('/eliminar/{id}', [ReparacionController::class, 'eliminarReparacion'])->middleware('auth')->name('eliminarReparacion');
 });
+
+Route::get('/buscarReparacion',[ReparacionController::class, 'consultaReparacion'])->name('consultarReparacion');
+Route::post('/buscarReparacion', [ReparacionController::class, 'consultarReparacionByUUID'])->name('consultarReparacionByUUID');
 

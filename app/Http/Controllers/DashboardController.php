@@ -24,11 +24,11 @@ class DashboardController extends Controller
 
     public function reparacionesRealizadas()
     {
-        $reparaciones_realizadas = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status = ?', [7])[0]->cuenta;
-        $reparaciones_realizadas_1_semana = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 14 day) AND DATE_SUB(NOW(), INTERVAL 7 day);', [7])[0]->cuenta;
-        $reparaciones_realizadas_semana_actual = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status = ? AND DATE(fh_inicio) BETWEEN CURDATE() - INTERVAL (DAYOFWEEK(CURDATE())-2 + 7) % 7 DAY AND CURDATE() + INTERVAL (7-DAYOFWEEK(CURDATE())+1) DAY; ', [7])[0]->cuenta;
+        $reparaciones_realizadas = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status = ? AND activo = ?', [7,1])[0]->cuenta;
+        $reparaciones_realizadas_1_semana = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status = ? AND activo = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 14 day) AND DATE_SUB(NOW(), INTERVAL 7 day);', [7,1])[0]->cuenta;
+        $reparaciones_realizadas_semana_actual = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status = ? AND activo = ? AND DATE(fh_inicio) BETWEEN CURDATE() - INTERVAL (DAYOFWEEK(CURDATE())-2 + 7) % 7 DAY AND CURDATE() + INTERVAL (7-DAYOFWEEK(CURDATE())+1) DAY; ', [7,1])[0]->cuenta;
         $porcentaje_reparacion_realizada = 0; // Por defecto, por si no hay datos anteriores
-        
+
         if ($reparaciones_realizadas_1_semana != 0) {
             $porcentaje_reparacion_realizada = (($reparaciones_realizadas_semana_actual - $reparaciones_realizadas_1_semana) / $reparaciones_realizadas_1_semana) * 100;
         } else {
@@ -40,9 +40,9 @@ class DashboardController extends Controller
 
     public function reparacionesPendientes()
     {
-        $reparaciones_pendientes = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status NOT IN (?)', [7])[0]->cuenta;
-        $reparaciones_pendientes_1_mes = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status NOT IN (?) AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 64 day) AND DATE_SUB(NOW(), INTERVAL 30 day);', [7])[0]->cuenta;
-        $reparaciones_pendientes_mes_actual = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status NOT IN (?) AND MONTH(fh_inicio) = MONTH(CURDATE()) AND YEAR(fh_inicio) = YEAR(CURDATE());', [7])[0]->cuenta;
+        $reparaciones_pendientes = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status NOT IN (?) AND activo = ?', [7,1])[0]->cuenta;
+        $reparaciones_pendientes_1_mes = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status NOT IN (?) AND activo = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 64 day) AND DATE_SUB(NOW(), INTERVAL 30 day);', [7,1])[0]->cuenta;
+        $reparaciones_pendientes_mes_actual = DB::select('SELECT COUNT(*) as cuenta FROM reparacion WHERE status NOT IN (?) AND activo = ? AND MONTH(fh_inicio) = MONTH(CURDATE()) AND YEAR(fh_inicio) = YEAR(CURDATE());', [7,1])[0]->cuenta;
         $porcentaje_reparacion_pendiente = 0;
 
         if ($reparaciones_pendientes_1_mes != 0) {
@@ -50,9 +50,10 @@ class DashboardController extends Controller
         } else {
             $porcentaje_reparacion_pendiente = ($reparaciones_pendientes_mes_actual != 0) ? 100 : 0; // O cualquier valor predeterminado que desees asignar
         }
-
-        if ($reparaciones_pendientes != null) {
+        if ($reparaciones_pendientes != null && $reparaciones_pendientes > 0) {
             return [$reparaciones_pendientes, $reparaciones_pendientes_1_mes, $reparaciones_pendientes_mes_actual, $porcentaje_reparacion_pendiente];
+        }else{
+            return [$reparaciones_pendientes=0, $reparaciones_pendientes_1_mes, $reparaciones_pendientes_mes_actual, $porcentaje_reparacion_pendiente];
         }
     }
 
@@ -74,9 +75,9 @@ class DashboardController extends Controller
 
     public function ventas()
     {
-        $ventas = DB::select('SELECT SUM(precio) as cuenta FROM reparacion WHERE status = ?', [7])[0]->cuenta;
-        $ventas_del_dia = DB::select('SELECT SUM(precio) as cuenta FROM reparacion WHERE status = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 1 day) AND NOW()', [7])[0]->cuenta;
-        $ventas_1_dia = DB::select('SELECT SUM(precio) as cuenta FROM reparacion WHERE status = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 2 day) AND DATE_SUB(NOW(), INTERVAL 1 day)', [7])[0]->cuenta;
+        $ventas = DB::select('SELECT SUM(precio) as cuenta FROM reparacion WHERE status = ? AND activo = ?', [7,1])[0]->cuenta;
+        $ventas_del_dia = DB::select('SELECT SUM(precio) as cuenta FROM reparacion WHERE status = ? AND activo = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 1 day) AND NOW()', [7,1])[0]->cuenta;
+        $ventas_1_dia = DB::select('SELECT SUM(precio) as cuenta FROM reparacion WHERE status = ? AND activo = ? AND fh_inicio BETWEEN DATE_SUB(NOW(), INTERVAL 2 day) AND DATE_SUB(NOW(), INTERVAL 1 day)', [7,1])[0]->cuenta;
         $porcentaje_ventas = 0;
 
         if ($ventas_1_dia != 0) {
